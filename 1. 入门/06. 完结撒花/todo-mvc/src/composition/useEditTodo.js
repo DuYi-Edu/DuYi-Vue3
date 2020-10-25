@@ -14,8 +14,12 @@ export default function useEditTodo(todosRef) {
       todo.title = title;
     } else {
       // 删除
-      todosRef.value.splice(todosRef.value.indexOf(todo), 1);
+      const index = todosRef.value.indexOf(todo);
+      if (index >= 0) {
+        todosRef.value.splice(index, 1);
+      }
     }
+    console.log(todosRef.value);
   };
   const cancelEdit = (todo) => {
     editingTodoRef.value = null;
